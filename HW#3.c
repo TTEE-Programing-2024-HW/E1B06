@@ -243,9 +243,9 @@ int main(void)
 							{
 								for(int j=1;j<=9;j++)
 								{
-									if(seat[i][j]=='@')
+									if(seat[i][j]=='@')//判斷seat[i][j]是否為'@'
 									{
-										seat[i][j]='*';
+										seat[i][j]='*';//以*取代@ 
 									}
 								}
 							}
@@ -257,9 +257,9 @@ int main(void)
 							{
 								for(int j=1;j<=9;j++)
 								{
-									if(seat[i][j]=='@')
+									if(seat[i][j]=='@')//判斷seat[i][j]是否為'@'
 									{
-										seat[i][j]='-';
+										seat[i][j]='-';//以-取代@
 									}
 								}
 							}
@@ -296,12 +296,12 @@ int main(void)
 				{
 					fflush(stdin);
 					scanf("%d-%d",&row,&col);
-					if(seat[row][col-1]=='*')
+					if(seat[row][col-1]=='*')//判斷seat[row][col-1]是否為'*' 
 					{
 						printf("座位已被選中，請重新輸入座位(EX:9-5):");
 						continue;
 					}
-					else if(seat[row][col-1]=='-')
+					else if(seat[row][col-1]=='-')//判斷seat[row][col-1]是否為'-'
 					{
 						seat[row][col-1]='@';
 						break;
