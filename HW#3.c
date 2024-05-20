@@ -78,6 +78,7 @@ int main(void)
 		switch(c)//判斷輸入的字元 
 		{
 			case 'a':
+			case 'A'
 				srand(time(NULL));// 每次運行都有不同的位置 
 				for (int i=0;i<=9;i++)
     			{
