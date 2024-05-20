@@ -17,7 +17,7 @@ char seat[9][9]=
 
 void star(void)
 {
-	printf("*************************\n");
+	printf("*********************\n");
 	return;
 }
 void Main(void)
@@ -30,31 +30,30 @@ void Main(void)
 	printf("-------------------------\n");	
 	return;
 }
-void fun(void)
+void hw(void)
 {
-	printf("\\123456789\n");
-	for (int i=1;i<9;i++) 
-	{
-    	printf("%d",i);
-    	for (int j=0;j<9;j++)
-		{
-    		printf("%c",seat[i][j]);
-   		}
-    printf("\n");
-	}
-	return;
-}
+	star();//呼叫star函數 
+	printf("* 歡迎來到程式作業3 *\n");
+	printf("* 按任意鍵以開始遊戲*\n");  
+	star();//呼叫star函數
+	printf("\n");
+	puts("H       H       A       PPPPP   PPPPP   Y       Y   ");
+	puts("H       H      A A      P    P  P    P   Y     Y    "); 
+	puts("H       H     A   A     P     P P     P   Y   Y     ");
+	puts("HHHHHHHHH    A     A    P    P  P    P     Y Y      ");
+	puts("H       H   AAAAAAAAA   PPPPP   PPPPP       Y       ");
+	puts("H       H  A         A  P       P           Y       ");
+	puts("H       H A           A P       P           Y       ");
+} 
 
 int main(void)
 {	
 	int a,b=2,c,peo;
-	star();//呼叫star函數 
-	printf("* 歡迎來到程式作業3 *\n");
-	printf("* 按任意鍵以開始遊戲*\n");  
-	star();//呼叫star函數 
+	hw(); 
 	getch();
 	system("cls");//清除螢幕
 	printf("請輸入4位數的密碼:");
+	fflush(stdin);
 	scanf("%d",&a);
 	while(a!=2024)//密碼=2024 
 	{
@@ -65,6 +64,7 @@ int main(void)
 			exit(EXIT_FAILURE);
 		}
 		printf("輸入錯誤，還剩%d次機會:",b);
+		fflush(stdin);
 		scanf("%d",&a);
 		b=b-1;
 	}
@@ -94,13 +94,23 @@ int main(void)
 	{	
 		Main();//呼叫Main函數，把主菜單叫出來
 		printf("請輸入:");
+		fflush(stdin);
 		scanf("%s",&c);	
 		switch(c)//判斷輸入的字元 
 		{
 			case 'a':
 			case 'A':
 				system("cls");//清除螢幕	
-				fun();
+				printf("\\123456789\n");
+				for (int i=1;i<9;i++) 
+				{
+    				printf("%d",i);
+    				for (int j=0;j<9;j++)
+					{
+    					printf("%c",seat[i][j]);
+   					}
+    			printf("\n");
+				}
 				printf("按任意鍵以回到主選單");
 				getch();
 				system("cls");//清除螢幕
@@ -109,10 +119,12 @@ int main(void)
 			case 'b':
 				system("cls");//清除螢幕
 				printf("需要幾個座位（1~4）:");
+				fflush(stdin);
 				scanf("%d",&peo);
 				while(peo<0||peo>4)
 				{
 					printf("請重新輸入需要的座位數（1~4）:");
+					fflush(stdin);
 					scanf("%d",&peo);	
 				}
 				switch(peo)
@@ -172,9 +184,9 @@ int main(void)
                 				seat[x][y-1]='@';//以@取代- 
                					seat[x][y-2]='@';//以@取代- 
                 			break;
-           					}
-            			break;	
+           					}	
 						}
+						break;
 					case 4:
 						while(1)
 						{
@@ -209,9 +221,19 @@ int main(void)
 						}
 						break;
 					}
-					fun();
+					printf("\\123456789\n");
+					for (int i=1;i<9;i++) 
+					{
+    					printf("%d",i);
+    					for (int j=0;j<9;j++)
+						{
+    						printf("%c",seat[i][j]);
+   						}
+    					printf("\n");
+					}
 					char n;
             		printf("對該座位滿意嗎?(y/n):");
+            		fflush(stdin);
 					scanf("%s",&n);
 					while(1)
 					{
@@ -246,13 +268,69 @@ int main(void)
 						else
 						{
 							printf("對該座位滿意嗎?(y/n):");
+							fflush(stdin);
 							scanf("%s",&n);	
 						}	
 					}	
 				printf("按任意鍵以回到主選單");
 				getch();
 				system("cls");//清除螢幕
-				break;	
+				break;
+			case 'C':
+			case 'c':
+				system("cls");//清除螢幕
+				int row,col;
+				printf("\\123456789\n");
+				for (int i=1;i<9;i++) 
+				{
+    				printf("%d",i);
+    				for (int j=0;j<9;j++)
+					{
+    					printf("%c",seat[i][j]);
+   					}
+    				printf("\n");
+				}
+				printf("\n");
+				printf("輸入座位(EX:9-5):");
+				while(1)
+				{
+					fflush(stdin);
+					scanf("%d-%d",&row,&col);
+					if(seat[row][col-1]=='*')
+					{
+						printf("座位已被選中，請重新輸入座位(EX:9-5):");
+						continue;
+					}
+					else if(seat[row][col-1]=='-')
+					{
+						seat[row][col-1]='@';
+						break;
+					}
+							
+				}
+				printf("\\123456789\n");
+				for (int i=1;i<9;i++) 
+				{
+    				printf("%d",i);
+    				for (int j=0;j<9;j++)
+					{
+    					printf("%c",seat[i][j]);
+   					}
+    				printf("\n");
+				}
+				for(int i=1;i<=9;i++)
+				{
+					for(int j=1;j<=9;j++)
+					{
+						if(seat[i][j]=='@')
+						{
+							seat[i][j]='*';
+						}
+					}	
+				}
+				getch();
+				system("cls");//清除螢幕
+				break;
 			case 'D':
 			case 'd':
 				system("cls");//清除螢幕
@@ -278,6 +356,7 @@ int main(void)
 				break;	
 		}
 	}
+
     return 0;
 }
 
