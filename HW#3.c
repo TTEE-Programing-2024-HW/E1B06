@@ -353,7 +353,7 @@ int main(void)
 						printf("按任意鍵以結束程式");
 						exit(EXIT_FAILURE);	
 				}
-				break;	
+				break;//	
 		}
 	}
 
