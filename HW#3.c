@@ -32,7 +32,7 @@ void Main(void)
 }
 void fun(void)
 {
-	printf(" 123456789\n");
+	printf("\\123456789\n");
 	for (int i=1;i<9;i++) 
 	{
     	printf("%d",i);
@@ -46,7 +46,7 @@ void fun(void)
 }
 
 int main(void)
-{
+{	
 	int a,b=2,c,peo;
 	star();//呼叫star函數 
 	printf("* 歡迎來到程式作業3 *\n");
@@ -69,6 +69,27 @@ int main(void)
 		b=b-1;
 	}
 	system("cls");//清除螢幕
+	srand(time(NULL));// 每次運行都是不同的位置 
+    for(int i=1;i<=9;i++)
+    {
+    	int x,y;
+    	x=rand()%9;
+    	y=rand()%9;
+    	while(1)
+    	{
+        	if (seat[x][y]=='*')
+        	{
+        		srand(time(NULL));
+            	x=rand()%9;
+            	y=rand()%9;
+        	}	
+        	else
+        	{
+           		break;
+        	}
+    	}
+    	seat[x][y]='*';
+	}
 	while(1)
 	{	
 		Main();//呼叫Main函數，把主菜單叫出來
@@ -78,27 +99,7 @@ int main(void)
 		{
 			case 'a':
 			case 'A':
-				system("cls");//清除螢幕
-				for (int i=0;i<=9;i++)
-    			{
-    				srand(time(NULL));// 每次運行都是不同的位置 
-    				int x,y;
-        			x=rand()%9;
-        			y=rand()%9;
-        			for (int s=0;s<=9;s++)
-        			{
-            			if (seat[x][y]=='*')
-            			{
-                			x=rand()%9;
-                			y=rand()%9;
-            			}
-            			else
-            			{
-               				break;
-            			}
-        			}
-        			seat[x][y]='*';
-    			}		
+				system("cls");//清除螢幕	
 				fun();
 				printf("按任意鍵以回到主選單");
 				getch();
@@ -121,41 +122,43 @@ int main(void)
 						{
 							srand(time(NULL));// 每次運行都是不同的位置 
     						int x,y;
-        					x=rand()%9;
-        					y=rand()%9;	
+        					x=rand()%9+1;
+        					y=rand()%9+1;	
 							if(seat[x][y]=='-')//判斷是否為空座位 
 							{
 								seat[x][y]='@';//以@取代seat[x][y]上的- 
 								break;
 							}
 						}
+						break;
 					case 2:
 						while(1)
 						{
 							srand(time(NULL));// 每次運行都是不同的位置 
     						int x,y;
-        					x=rand()%9;
-        					y=rand()%9;	
+        					x=rand()%9+1;
+        					y=rand()%9+1;	
 							if((seat[x][y]=='-')&&(seat[x][y+1]=='-'))//判斷是否為空座位 
 							{
 								seat[x][y]='@';//以@取代- 
 								seat[x][y+1]='@';//以@取代- 
 								break;	
 							}
-							else if ((seat[x][y] == '-') && (seat[x][y - 1] == '-'))//判斷是否為空座位 
+							else if ((seat[x][y]=='-')&&(seat[x][y-1]=='-'))//判斷是否為空座位 
             				{
-                				seat[x][y] = '@';//以@取代- 
-                				seat[x][y - 1] = '@';//以@取代- 
+                				seat[x][y]='@';//以@取代- 
+                				seat[x][y-1]='@';//以@取代- 
                					break;
             				}
             			}
+            			break;
             		case 3:
             			while(1)
             			{
             				srand(time(NULL));// 每次運行都是不同的位置 
     						int x,y;
-        					x=rand()%9;
-        					y=rand()%9;	
+        					x=rand()%9+1;
+        					y=rand()%9+1;	
             				if ((seat[x][y]=='-') && (seat[x][y+1]=='-') && (seat[x][y+2]=='-'))//判斷是否為空座位 
             				{
                 				seat[x][y]='@';//以@取代- 
@@ -177,8 +180,8 @@ int main(void)
 						{
 							srand(time(NULL));// 每次運行都是不同的位置 
     						int x,y;
-        					x=rand()%9;
-        					y=rand()%9;
+        					x=rand()%9+1;
+        					y=rand()%9+1;
 							if ((seat[x][y]=='-') && (seat[x][y+1]=='-') && (seat[x][y+2]=='-')&&(seat[x][y+3]=='-'))//判斷是否為空座位 
             				{
                 				seat[x][y]='@';//以@取代- 
@@ -195,19 +198,61 @@ int main(void)
                 				seat[x][y-3]='@';//以@取代- 
                 				break;
             				}
-							else if ((seat[x][y]=='-') && (seat[x][y-1]=='-') && (seat[x-1][y]=='-')&&(seat[x-1][y-1]=='-'))//判斷是否為空座位 
+							else if ((seat[x][y]=='-') && (seat[x][y+1]=='-') && (seat[x+1][y]=='-')&&(seat[x+1][y+1]=='-'))//判斷是否為空座位 
             				{
                 				seat[x][y]='@';//以@取代- 
-                				seat[x][y-1]='@';//以@取代- 
-                				seat[x-1][y]='@';//以@取代- 
-                				seat[x-1][y-1]='@';//以@取代- 
+                				seat[x][y+1]='@';//以@取代- 
+                				seat[x+1][y]='@';//以@取代- 
+                				seat[x+1][y+1]='@';//以@取代- 
                 				break;
             				}
 						}
+						break;
 					}
 					fun();
-            		system("PAUSE");	
-					
+					char n;
+            		printf("對該座位滿意嗎?(y/n):");
+					scanf("%s",&n);
+					while(1)
+					{
+						if(n=='Y'||n=='y')
+						{
+							for(int i=1;i<=9;i++)
+							{
+								for(int j=1;j<=9;j++)
+								{
+									if(seat[i][j]=='@')
+									{
+										seat[i][j]='*';
+									}
+								}
+							}
+							break;	
+						}
+						else if(n=='N'||n=='n')
+						{
+							for(int i=1;i<=9;i++)
+							{
+								for(int j=1;j<=9;j++)
+								{
+									if(seat[i][j]=='@')
+									{
+										seat[i][j]='-';
+									}
+								}
+							}
+							break;	
+						}
+						else
+						{
+							printf("對該座位滿意嗎?(y/n):");
+							scanf("%s",&n);	
+						}	
+					}	
+				printf("按任意鍵以回到主選單");
+				getch();
+				system("cls");//清除螢幕
+				break;	
 			case 'D':
 			case 'd':
 				system("cls");//清除螢幕
