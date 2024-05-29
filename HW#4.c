@@ -82,7 +82,12 @@ int main(void)
 			printf("請輸入n(5-10):");
 			fflush(stdin);
 			scanf("%d",&n);
-			
+			while(n<5||n>10)
+			{
+				printf("輸入錯誤，請重新輸入n(5-10):");
+				fflush(stdin);
+				scanf("%d",&n);
+			}
 			for(int i=1;i<=n;i++)
 			{
 				printf("請分別輸入%d號學生的姓名、學號、數學成績、物理成績、英文成績\n",i);
@@ -111,8 +116,7 @@ int main(void)
 					fflush(stdin);
 					scanf("%d",&student[i].eng);
 				}
-				avg[i]=((float)(student[i].math+student[i].phy+student[i].eng))/3;
-				printf("%3.1f",avg[i]);
+				
 			}
 			printf("按任意鍵以回到主選單");
 			getch();
@@ -124,6 +128,7 @@ int main(void)
 			printf("姓名\t學號\tMath\tPhysics\tEnglish\t平均成績");
 			for(int j=1;j<=n;j++)
 			{
+				avg[j]=((float)(student[j].math+student[j].phy+student[j].eng))/3;
 				printf("\n%s\t%s\t%d\t%d\t%d\t%3.1f\n",student[j].name,student[j].ID,student[j].math,student[j].phy,student[j].eng,avg[j]);
 			}
 			getch();
