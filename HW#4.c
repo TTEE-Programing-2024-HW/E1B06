@@ -70,15 +70,16 @@ int main(void)
 	while(1)
 	{
 		Main();//呼叫Main函數，把主菜單叫出來
-		int n,c;
+		int n;
+		char c;
+		struct information student[10];
 		printf("請輸入:");
-		scanf("%s",&c);		
+		scanf(" %c",&c);		
 		switch(c)
 		{
 		case 'A':
 		case 'a':
 			system("cls");//清除螢幕
-			struct information student[10];
 			printf("請輸入n(5-10):");
 			fflush(stdin);
 			scanf("%d",&n);
@@ -92,31 +93,48 @@ int main(void)
 			{
 				printf("請分別輸入%d號學生的姓名、學號、數學成績、物理成績、英文成績\n",i);
 				scanf("%s %s %d %d %d",&student[i].name,&student[i].ID,&student[i].math,&student[i].phy,&student[i].eng);
-				while(strlen(student[i].ID)!=6)
+				for(int l=1;l<=n;l++)//檢查姓名是否重複 
 				{
-					printf("學號輸入錯誤，請重新輸入學號:");
+					while(strcmp(student[l].name,student[i].name)==0&&l!=i)
+					{
+						printf("姓名重複，請重新輸入姓名:");
+						fflush(stdin);
+						scanf("%s",&student[i].name);
+					}
+				}
+				while(strlen(student[i].ID)!=6)//檢查學號格式是否正確 
+				{
+					printf("學號錯誤，請重新輸入學號:");
 					fflush(stdin);
 					scanf("%s",&student[i].ID);
 				}
-				while(student[i].math<0||student[i].math>100)
+				for(int t=1;t<=n;t++)//檢查學號是否重複 
 				{
-					printf("數學成績輸入錯誤，請重新輸入數學成績:");
+					while(strcmp(student[t].ID,student[i].ID)==0&&t!=i)
+					{
+						printf("學號重複，請重新輸入學號:");
+						fflush(stdin);
+						scanf("%s",&student[i].ID);
+					}
+				}
+				while(student[i].math<0||student[i].math>100)//檢查數學成績是否正確 
+				{
+					printf("數學成績錯誤，請重新輸入數學成績:");
 					fflush(stdin);
 					scanf("%d",&student[i].math);
 				}
-				while(student[i].phy<0||student[i].phy>100)
+				while(student[i].phy<0||student[i].phy>100)//檢查物理成績是否正確 
 				{
-					printf("物理成績輸入錯誤，請重新輸入物理成績:");
+					printf("物理成績錯誤，請重新輸入物理成績:");
 					fflush(stdin);
 					scanf("%d",&student[i].phy);
 				}
-				while(student[i].eng<0||student[i].eng>100)
+				while(student[i].eng<0||student[i].eng>100)//檢查英文成績是否正確 
 				{
-					printf("英文成績輸入錯誤，請重新輸入物理英文成績:");
+					printf("英文成績錯誤，請重新輸入英文成績:");
 					fflush(stdin);
 					scanf("%d",&student[i].eng);
 				}
-				
 			}
 			printf("按任意鍵以回到主選單");
 			getch();
@@ -128,9 +146,41 @@ int main(void)
 			printf("姓名\t學號\tMath\tPhysics\tEnglish\t平均成績");
 			for(int j=1;j<=n;j++)
 			{
-				avg[j]=((float)(student[j].math+student[j].phy+student[j].eng))/3;
+				avg[j]=((float)(student[j].math+student[j].phy+student[j].eng))/3;//計算平均 
 				printf("\n%s\t%s\t%d\t%d\t%d\t%3.1f\n",student[j].name,student[j].ID,student[j].math,student[j].phy,student[j].eng,avg[j]);
 			}
+			printf("\n");
+			printf("按任意鍵以回到主選單");
+			getch();
+			system("cls");//清除螢幕
+			break;
+		case 'C':
+		case 'c':
+			system("cls");
+			int num=0;
+			char name1[25];
+			printf("請輸入想要搜尋的姓名:");
+			fflush(stdin);
+			scanf("%s",&name1);	
+			for(int k=1;k<=n;k++)
+			{
+				if(strcmp(student[k].name,name1)==0)
+				{
+					num=k;
+					break;
+				}
+			}
+			if(num==0)
+			{
+				printf("找不到此人");
+			}
+			else
+			{
+				printf("姓名\t學號\tMath\tPhysics\tEnglish\t平均成績");	
+				printf("\n%s\t%s\t%d\t%d\t%d\t%3.1f\n",student[num].name,student[num].ID,student[num].math,student[num].phy,student[num].eng,avg[num]);
+			}
+			printf("\n");
+			printf("按任意鍵以回到主選單");
 			getch();
 			system("cls");//清除螢幕
 			break;
