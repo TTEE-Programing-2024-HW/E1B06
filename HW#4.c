@@ -232,8 +232,33 @@ void cfun(void)
 	system("cls");//清除螢幕
 	return;	
 }
-void dfun(void)
+void dfun(void)// 使用簡單的冒泡排序法對學生依據平均成績進行降序排序
 {
-	
+	system("cls");
+    for (int x=1;x<=num-1;x++) 
+	{
+        for (int y=x+1;y<=num;y++) 
+		{
+            if (avg[x]<avg[y]) 
+			{
+				// 交換學生信息
+                struct information tempname=student[x];
+                student[x]=student[y];
+                student[y]=tempname;
+                // 交換平均成績 
+                float tempavg=avg[x];
+                avg[x]=avg[y];
+                avg[y]=tempavg;
+            }
+        }
+    }
+    printf("姓名\t學號\t平均成績");
+    for (int z=1;z<=num;z++) 
+	{
+        printf("\n%s\t%s\t%.1f\n",student[z].name,student[z].ID,avg[z]);
+    }
+    printf("\n按任意鍵以回到主選單");
+    getch();
+    system("cls"); // Clear screen
 }
 
