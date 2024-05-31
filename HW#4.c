@@ -169,8 +169,7 @@ void afun(void)
 					valid=0;
                 	break;//跳出for循環，重新進入while循環
 				}
-			}
-			
+			}	
 		}
 		while(student[i].math<0||student[i].math>100)//檢查數學成績是否正確 
 		{
@@ -221,7 +220,7 @@ void cfun(void)
 	scanf("%s",&name2);	
 	for(int k=1;k<=num;k++)
 	{
-		if(strcmp(student[k].name,name2)==0)
+		if(strcmp(student[k].name,name2)==0)//找尋輸入的姓名是否與結構中的姓名相同 
 		{
 			num1=k;
 			break;
@@ -229,7 +228,7 @@ void cfun(void)
 	}
 	if(num1==0)
 	{
-		printf("找不到此人");
+		printf("\n找不到此人");
 	}
 	else
 	{
@@ -242,7 +241,7 @@ void cfun(void)
 	system("cls");//清除螢幕
 	return;	
 }
-void dfun(void)// 使用簡單的冒泡排序法對學生依據平均成績進行降序排序
+void dfun(void)//使用簡單的冒泡排序法對學生依據平均成績進行降序排序
 {
 	system("cls");
     for (int x=1;x<=num-1;x++) 
@@ -251,11 +250,11 @@ void dfun(void)// 使用簡單的冒泡排序法對學生依據平均成績進行降序排序
 		{
             if (avg[x]<avg[y]) 
 			{
-				// 交換學生信息
+				//交換學生信息
                 struct information tempname=student[x];
                 student[x]=student[y];
                 student[y]=tempname;
-                // 交換平均成績 
+                //交換平均成績 
                 float tempavg=avg[x];
                 avg[x]=avg[y];
                 avg[y]=tempavg;
@@ -269,6 +268,6 @@ void dfun(void)// 使用簡單的冒泡排序法對學生依據平均成績進行降序排序
     }
     printf("\n按任意鍵以回到主選單");
     getch();
-    system("cls"); // Clear screen
+    system("cls");//清除螢幕
+    return;
 }
-
