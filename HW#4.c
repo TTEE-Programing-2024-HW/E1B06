@@ -147,20 +147,30 @@ void afun(void)
 				scanf("%s",&student[i].name);
 			}
 		}
-		for(int t=1;t<=n;t++)//檢查學號是否重複 
+		int valid=0;
+		while(valid==0)
 		{
-			while(strcmp(student[t].ID,student[i].ID)==0&&t!=i)
+			valid=1;
+			while(strlen(student[i].ID)!=6)//檢查學號格式是否正確 
 			{
-				printf("學號重複，請重新輸入學號:");
+				printf("學號錯誤，請重新輸入學號:");
 				fflush(stdin);
 				scanf("%s",&student[i].ID);
+				valid=0;
+                continue;//跳過後面的檢查，重新進入循環
 			}
-		}
-		while(strlen(student[i].ID)!=6)//檢查學號格式是否正確 
-		{
-			printf("學號錯誤，請重新輸入學號:");
-			fflush(stdin);
-			scanf("%s",&student[i].ID);
+			for(int t=1;t<=n;t++)//檢查學號是否重複 
+			{
+				while(strcmp(student[t].ID,student[i].ID)==0&&t!=i)
+				{
+					printf("學號重複，請重新輸入學號:");
+					fflush(stdin);
+					scanf("%s",&student[i].ID);
+					valid=0;
+                	break;//跳出for循環，重新進入while循環
+				}
+			}
+			
 		}
 		while(student[i].math<0||student[i].math>100)//檢查數學成績是否正確 
 		{
